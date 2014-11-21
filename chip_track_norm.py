@@ -76,6 +76,7 @@ if __name__ == "__main__":
 		bedgraphtobigwig(bedgraph, chrom)
 	elif args["cov"]:
 		cov = normalise_to_coverage(args["cov"])
-		scale = float(1000000)/int(cov) #Works and checked
+		print name, cov
+		scale = float(10000)/int(cov) #Works and checked
 		bedgraph = genomeCoverage(name, cov=cov)
 		bedgraphtobigwig(bedgraph, chrom)
