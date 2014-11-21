@@ -77,5 +77,5 @@ if __name__ == "__main__":
 	elif args["cov"]:
 		cov = normalise_to_coverage(args["cov"])
 		scale = float(1000000)/int(cov) #Works and checked
-		genomeCoverage(name, cov=cov)
-		bedgraphtobigwig(name, chrom)
+		bedgraph = genomeCoverage(name, cov=cov)
+		bedgraphtobigwig(bedgraph, chrom)
