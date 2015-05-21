@@ -62,7 +62,7 @@ if __name__ == "__main__":
 	parser.add_argument('-i','--input', help='Input BED file in UCSC format', required=False)
 	parser.add_argument('-g','--genome', help='Genome the samples are aligned to, options include mm10/mm9/hg19', required=True)
 	parser.add_argument('-a','--house', help='Housekeeper normalisation. Input file is HTSEQ-count file containing gene for normalisation on first line', required=False)
-	parser.add_argument('-c', '--cov', help='Nomralisation using bedtools coverage file', required=False)
+	parser.add_argument('-c', '--cov', help='Normalisation using bedtools coverage file', required=False)
 	args = vars(parser.parse_args())
 	chrom = pkg_resources.resource_filename('pychiptools', 'data/{}.chrom.sizes'.format(args["genome"]))
 	
@@ -71,7 +71,7 @@ if __name__ == "__main__":
 
 	if args["house"]:
 		house = normalise_to_housekeeper(args["house"])
-		scale = float(1000)/int(house) #Works and checked
+		scale = float(1000000)/int(house) #Works and checked
 		bedgraph = genomeCoverage(name, house=scale)
 		bedgraphtobigwig(bedgraph, chrom)
 	elif args["cov"]:
